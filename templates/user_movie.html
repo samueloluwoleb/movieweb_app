@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> User favorite movies </title>
+</head>
+
+<body>
+    <h1> List of {{ user_name }}'s movies </h1>
+    <ul>
+        {% for movie in user_movies %}
+            <li>
+                Name - {{ movie.get('name') }}
+                <ul>
+                    <li>
+                        id - {{ movie.get('id') }}
+                    </li>
+                    <li>
+                        Director - {{ movie.get('director') }}
+                    </li>
+                    <li>
+                        Year - {{ movie.get('year') }}
+                    </li>
+                    <li>
+                        Rating - {{ movie.get('rating') }}
+                    </li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
