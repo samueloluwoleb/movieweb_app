@@ -10,7 +10,7 @@
     <ul>
         {% for user in users[0] %}
             <li>
-                <a href="/users/{{ user }}?name={{ users[0].get(user).get('name') }}"> {{ users[0].get(user).get('name') }} </a>
+                <a href="/users/{{ user }}"> {{ users[0].get(user).get('name') }} </a>
             </li>
         {% endfor %}
     </ul>
