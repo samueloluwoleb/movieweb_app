@@ -73,14 +73,17 @@ class JSONDataManager(DataManagerInterface):
                 year = response.get('Year')
                 rating = response.get('imdbRating')
 
+                print(name, director, year, rating)
+
                 # check if user already has the movie that was searched
                 user_movies = self.get_user_movies(user_id_param)
+
                 if user_movies:
                     for movie in user_movies:
                         if name.strip() == movie.get('name').strip():
                             return 'movie exists', '', '', ''
 
-                    return name, year, rating, director
+                return name, year, rating, director
         except Exception:
             return None, None, None, None
 
@@ -113,54 +116,44 @@ class JSONDataManager(DataManagerInterface):
         except Exception:
             return None
 
-    def get_movie_info_update(self, user_id_param, movie_id_param):
-        movies = self.get_user_movies(user_id_param)
+    def get_user_movie(self, user_id_param, movie_id_param):
+        user_movies = self.get_user_movies(user_id_param)
+        for movie in user_movies:
+            if movie.get('id') == movie_id_param:
+                return movie
 
-        if
-        for movie in movies:
-            if movie_id_param == movie.get('id'):
-                director = movie.get('director')
-                name = movie.get('name')
-                rating = movie.get('rating')
-                year = movie.get('year')
+    def get_movie_name(self, user_id_param, movie_id_param):
+        user_movies = self.get_user_movies(user_id_param)
+        for movie in user_movies:
+            if movie.get('id') == movie_id_param:
+                return movie.get('name')
 
-                return name, year, rating, director
-
-        name = "no match"
-        return name, "", "", ""
-
-    def update_movie(self, name, director, year, rating, user_id_param, movie_id):
-        movie_id = int(movie_id)
+    def update_movie(self, name_param, director_param, year_param, rating_param, user_id_param, movie_id_param):
 
         users = self.get_all_users()
         movies = self.get_user_movies(user_id_param)
 
-        movie_info = {"id": movie_id, "name": name, "director": director, "year": year, "rating": rating}
+        movie_info = {"id": movie_id_param, "name": name_param, "director": director_param, "year": year_param, "rating": rating_param}
         for count, movie in enumerate(movies):
-            if movie.get('id') == movie_id:
+            if movie.get('id') == movie_id_param:
                 users[0].get(user_id_param).get("movies")[count] = movie_info
 
         json_data = json.dumps(users)
         with open("storage/movies_database.json", "w") as fileobj:
             fileobj.write(json_data)
 
-    def delete_movie(self,movie_name_param, user_id_param, movie_id_param):
-        movie_id_param = int(movie_id_param)
+    def delete_movie(self, user_id_param, movie_id_param):
 
         users = self.get_all_users()
         movies = self.get_user_movies(user_id_param)
 
         for count, movie in enumerate(movies):
-            if movie_name_param.strip() == movie.get('name').strip() and\
-                    movie_id_param.strip() == movie.get('id').strip():
+            if movie_id_param == movie.get('id'):
                 del users[0].get(user_id_param).get('movies')[count]
 
                 json_data = json.dumps(users)
                 with open("storage/movies_database.json", "w") as fileobj:
                     fileobj.write(json_data)
-                return "deleted"
-            else:
-                return "no match"
 
 
 # def find_user_by_id(self, user_id_param):

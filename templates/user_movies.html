@@ -13,7 +13,7 @@
         {% else %}
             {% for movie in user_movies %}
                 <li>
-                    Name - {{ movie.get('name') }}
+                    <h2> Name - {{ movie.get('name') }} </h2>
                     <ul>
                         <li>
                             id - {{ movie.get('id') }}
@@ -29,6 +29,13 @@
                         </li>
                     </ul>
                 </li>
+                <div>
+                    <p> <a class = "btn_link" href="/users/{{ user_id }}/update_movie/{{ movie.get('id') }}"> <input type="button" value="Update"> </a> </p>
+                </div>
+
+                <div>
+                    <p> <a class = "btn_link" href="/users/{{ user_id }}/delete_movie/{{ movie.get('id') }}"> <input type="button" value="Delete"> </a> </p>
+                </div>
             {% endfor %}
         {% endif %}
     </ul>

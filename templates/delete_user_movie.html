@@ -5,38 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-    {% if not movie_name %}
-        <div>
-            <form method="GET" action="/users/{{ user_id }}/delete_movie/{{ movie_id }}">
-                <label for="delete">Delete movie:</label><br>
-                <input type="text" id="delete_movie" name="delete_movie" placeholder="Enter the movie name to delete"><br>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-    {% elif movie_name == "no match" %}
-        <div>
-            <h2>There are no movies with the same name in your list </h2>
-            <div>
-                <p> Enter another movie</p>
-                <form method="GET" action="/users/{{ user_id }}/delete_movie/{{ movie_id }}">
-                    <label for="delete">Delete movie:</label><br>
-                    <input type="text" id="delete_movie" name="delete_movie" placeholder="Enter the movie name to delete"><br>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
-        </div>
-    {% elif movie_name == "no search" %}
-        <div>
-            <h2> You didn't search for any movie name  </h2>
-            <div>
-                <p> Enter movie name to search </p>
-                <form method="GET" action="/users/{{ user_id }}/delete_movie/{{ movie_id }}">
-                    <label for="delete">Delete movie:</label><br>
-                    <input type="text" id="delete_movie" name="delete_movie" placeholder="Enter the movie name to delete"><br>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
-        </div>
-    {% endif %}
+    <div>
+        <h2> The movie {{ movie_name }} has been successfully deleted</h2>
+    </div>
 </body>
 </html>

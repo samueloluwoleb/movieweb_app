@@ -40,7 +40,7 @@ def show_user_movies(user_id):
     :return:
     """
     user_movies = data_manager.get_user_movies(user_id)
-    return render_template('user_movies.html', user_movies=user_movies)
+    return render_template('user_movies.html', user_movies=user_movies, user_id=user_id)
 
 
 @app.route('/add_user', methods=['GET', 'POST'])
@@ -102,38 +102,17 @@ def update_user_movie(user_id, movie_id):
 
         return redirect(url_for('show_user_movies', user_id=user_id))
     else:
-        id_movie = request.args.get('update_movie')
-        if movie_name is None:
-            return render_template('update_user_movie.html', user_id=user_id, movie_id=movie_id, movie_name=movie_name)
-        if movie_name or movie_name == '':
-            name, year, rating, director = data_manager.get_movie_info_update(movie_name, user_id, movie_id)
-
-            if name == 'no match':
-                movie_name = name
-                return render_template('update_user_movie.html', user_id=user_id, movie_id=movie_id, movie_name=movie_name)
-            if name == 'no search':
-                movie_name = name
-                return render_template('update_user_movie.html', user_id=user_id, movie_id=movie_id, movie_name=movie_name)
-            return render_template('update_user_movie.html', name=name, movie_id=movie_id,
-                                   year=year, rating=rating, director=director, user_id=user_id)
+        movie = data_manager.get_user_movie(user_id, movie_id)
+        return render_template('update_user_movie.html', user_id=user_id, movie_id=movie_id, movie=movie)
 
 
 @app.route('/users/<user_id>/delete_movie/<movie_id>')
 def delete_user_movie(user_id, movie_id):
     movie_id = int(movie_id)
-    movie_name = request.args.get('delete_movie')
-    if movie_name is None:
-        return render_template('delete_user_movie.html', user_id=user_id, movie_id=movie_id, movie_name=movie_name)
-    if movie_name or movie_name == '':
-        name = data_manager.delete_movie(movie_name, user_id, movie_id)
-        if name == "no match":
-            movie_name = name
-            return render_template('delete_user_movie.html', user_id=user_id, movie_id=movie_id, movie_name=movie_name)
-        if name == "no search":
-            movie_name = name
-            return render_template('delete_user_movie.html', user_id=user_id, movie_id=movie_id, movie_name=movie_name)
-        if name == "deleted":
-            return redirect(url_for('show_user_movies', user_id=user_id))
+    movie_name = data_manager.get_movie_name(user_id, movie_id)
+    data_manager.delete_movie(user_id, movie_id)
+
+    return render_template('delete_user_movie.html', user_id=user_id, movie_id=movie_id, movie_name=movie_name)
 
 
 if __name__ == '__main__':
