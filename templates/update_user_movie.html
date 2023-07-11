@@ -5,19 +5,36 @@
     <title>Title</title>
 </head>
 <body>
+    <div>
+        {% if name %}
+            <div>
+                <p><h2>The movie - {{ name }} - successfully updated with new info </h2></p>
+            </div>
+        {% else %}
+            <div>
+                <div>
+                    <h2> These are your movie details, change any field to update </h2>
+                </div>
+                <div>
+                    <form method="POST" action="/users/{{ user_id }}/update_movie/{{ movie_id }}">
+                        <label for="movie_name">Movie Name:</label><br>
+                        <input type="text" id="movie_name" name="movie_name" value=" {{ movie.get('name') }} "><br>
+                        <label for="movie_year">Year of Release:</label><br>
+                        <input type="text" id="movie_year" name="movie_year" value=" {{ movie.get('year') }} "><br>
+                        <label for="movie_rating">Movie Rating:</label><br>
+                        <input type="text" id="movie_rating" name="movie_rating" value=" {{ movie.get('rating') }} "><br>
+                        <label for="movie_director">Movie Director:</label><br>
+                        <input type="text" id="movie_director" name="movie_director" value=" {{ movie.get('director') }} "><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        {% endif %}
         <div>
-            <h2> These are your movie details, change any field to update </h2>
-            <form method="POST" action="/users/{{ user_id }}/update_movie/{{ movie_id }}">
-                <label for="movie_name">Movie Name:</label><br>
-                <input type="text" id="movie_name" name="movie_name" value=" {{ movie.get('name') }} "><br>
-                <label for="movie_year">Year of Release:</label><br>
-                <input type="text" id="movie_year" name="movie_year" value=" {{ movie.get('year') }} "><br>
-                <label for="movie_rating">Movie Rating:</label><br>
-                <input type="text" id="movie_rating" name="movie_rating" value=" {{ movie.get('rating') }} "><br>
-                <label for="movie_director">Movie Director:</label><br>
-                <input type="text" id="movie_director" name="movie_director" value=" {{ movie.get('director') }} "><br>
-                <input type="submit" value="Submit">
-            </form>
+            <p> <a href="/"> Homepage </a> </p>
+            <p> <a href="/users/{{user_id}}"> View your updated catalogue </a> </p>
+            <p> <a href="/users/{{ user_id }}/add_movie"> Add a new movie to your catalogue </a> </p>
         </div>
+    </div>
 </body>
 </html>

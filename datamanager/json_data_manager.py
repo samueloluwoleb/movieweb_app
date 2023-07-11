@@ -44,7 +44,7 @@ class JSONDataManager(DataManagerInterface):
         users = self.get_all_users()
 
         # creates new user_id, create a new user using their name and user_id and add it to the user database
-        new_id = int(max(user_ids for user_ids in users[0])) + 1
+        new_id = max(int(user_id) for user_id in users[0]) + 1
         new_id = str(new_id)
         users[0][new_id] = {'name': name}
 
@@ -52,6 +52,8 @@ class JSONDataManager(DataManagerInterface):
 
         with open("storage/movies_database.json", "w") as fileobj:
             fileobj.write(json_data)
+
+        return name
 
     def get_movie_info_api(self, movie_name_param, user_id_param):
         try:
@@ -72,8 +74,6 @@ class JSONDataManager(DataManagerInterface):
                 director = response.get('Director')
                 year = response.get('Year')
                 rating = response.get('imdbRating')
-
-                print(name, director, year, rating)
 
                 # check if user already has the movie that was searched
                 user_movies = self.get_user_movies(user_id_param)
@@ -155,6 +155,9 @@ class JSONDataManager(DataManagerInterface):
                 with open("storage/movies_database.json", "w") as fileobj:
                     fileobj.write(json_data)
 
+    def get_user_name(self, user_id_param):
+        users = self.get_all_users()
+        return users[0].get(user_id_param).get('name')
 
 # def find_user_by_id(self, user_id_param):
 #     users = self.get_all_users()

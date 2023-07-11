@@ -6,39 +6,46 @@
 </head>
 
 <body>
-    <h1> List of user's movies </h1>
-    <ul>
-        {% if not user_movies %}
-            <li> This user has no favourite movie </li>
-        {% else %}
-            {% for movie in user_movies %}
-                <li>
-                    <h2> Name - {{ movie.get('name') }} </h2>
-                    <ul>
+    <div>
+        <div>
+            <h1> List of {{ name }}'s movies </h1>
+        </div>
+        <div>
+            <ul>
+                {% if not user_movies %}
+                    <li> <h3> This user has no favourite movie </h3></li>
+                {% else %}
+                    {% for movie in user_movies %}
                         <li>
-                            id - {{ movie.get('id') }}
+                            <h3> Name - {{ movie.get('name') }} </h3>
+                            <ul>
+                                <li>
+                                    id - {{ movie.get('id') }}
+                                </li>
+                                <li>
+                                    Director - {{ movie.get('director') }}
+                                </li>
+                                <li>
+                                    Year - {{ movie.get('year') }}
+                                </li>
+                                <li>
+                                    Rating - {{ movie.get('rating') }}
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            Director - {{ movie.get('director') }}
-                        </li>
-                        <li>
-                            Year - {{ movie.get('year') }}
-                        </li>
-                        <li>
-                            Rating - {{ movie.get('rating') }}
-                        </li>
-                    </ul>
-                </li>
-                <div>
-                    <p> <a class = "btn_link" href="/users/{{ user_id }}/update_movie/{{ movie.get('id') }}"> <input type="button" value="Update"> </a> </p>
-                </div>
-
-                <div>
-                    <p> <a class = "btn_link" href="/users/{{ user_id }}/delete_movie/{{ movie.get('id') }}"> <input type="button" value="Delete"> </a> </p>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </ul>
-
+                        <div>
+                            <p> <a href="/users/{{ user_id }}/update_movie/{{ movie.get('id') }}"> <input type="button" value="Update"> </a> </p>
+                            <p> <a href="/users/{{ user_id }}/delete_movie/{{ movie.get('id') }}"> <input type="button" value="Delete"> </a> </p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+        <div>
+            <p> <a href="/"> Homepage </a> </p>
+            <p> <a href="/users"> View all users </a> </p>
+            <p> <a href="/users/{{ user_id }}/add_movie"> Add a new movie to your catalogue </a> </p>
+        </div>
+    </div>
 </body>
 </html>

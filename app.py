@@ -40,22 +40,28 @@ def show_user_movies(user_id):
     :return:
     """
     user_movies = data_manager.get_user_movies(user_id)
-    return render_template('user_movies.html', user_movies=user_movies, user_id=user_id)
+    name = data_manager.get_user_name(user_id)
+    return render_template('user_movies.html', user_movies=user_movies, user_id=user_id, name=name)
 
 
-@app.route('/add_user', methods=['GET', 'POST'])
+@app.route('/add_user')
 def add_user():
     """
         Gets triggered when the client sends either a get or post request to this route.
 
     :return:
     """
-    if request.method == 'POST':
-        name = request.form['username']
-        data_manager.add_user(name)
-        return redirect(url_for('list_users'))
+    user_name = request.args.get('username')
+    name = ""
+    if user_name is None:
+        return render_template('add_user.html', user_name=user_name, name=name)
     else:
-        return render_template('add_user.html')
+        if user_name == '':
+            return render_template('add_user.html', user_name=user_name)
+        else:
+            name = data_manager.add_user(user_name)
+            user_name = name
+            return render_template('add_user.html', user_name=user_name, name=name)
 
 
 @app.route('/users/<user_id>/add_movie', methods=['GET', 'POST'])
@@ -67,15 +73,15 @@ def add_user_movie(user_id):
         director = request.form['movie_director']
 
         data_manager.add_user_movie(name, director, year, rating, user_id)
+        movie_name = "movie added"
 
-        return redirect(url_for('show_user_movies', user_id=user_id))
+        return render_template('add_user_movie.html', user_id=user_id, movie_name=movie_name, name=name)
     else:
         movie_name = request.args.get('movie_search')
         if movie_name is None:
             return render_template('add_user_movie.html', user_id=user_id, movie_name=movie_name)
         if movie_name or movie_name == '':
             name, year, rating, director = data_manager.get_movie_info_api(movie_name, user_id)
-            print(name, year, rating, director)
             if name == 'no movie found':
                 movie_name = name
                 return render_template('add_user_movie.html', user_id=user_id, movie_name=movie_name)
@@ -100,7 +106,7 @@ def update_user_movie(user_id, movie_id):
 
         data_manager.update_movie(name, director, year, rating, user_id, movie_id)
 
-        return redirect(url_for('show_user_movies', user_id=user_id))
+        return render_template('update_user_movie.html', name=name, user_id=user_id)
     else:
         movie = data_manager.get_user_movie(user_id, movie_id)
         return render_template('update_user_movie.html', user_id=user_id, movie_id=movie_id, movie=movie)

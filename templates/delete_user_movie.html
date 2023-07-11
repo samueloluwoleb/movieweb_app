@@ -6,7 +6,14 @@
 </head>
 <body>
     <div>
-        <h2> The movie {{ movie_name }} has been successfully deleted</h2>
+        <div>
+            <h3> The movie - {{ movie_name }} - has been successfully deleted</h3>
+        </div>
+        <div>
+            <p> <a href="/"> Homepage </a> </p>
+            <p> <a href="/users/{{ user_id }}"> View your updated catalogue </a> </p>
+            <p> <a href="/users/{{ user_id }}/add_movie"> Add a new movie to your catalogue</a> </p>
+        </div>
     </div>
 </body>
 </html>

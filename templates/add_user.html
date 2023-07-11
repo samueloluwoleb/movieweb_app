@@ -5,11 +5,35 @@
     <title> Add a user </title>
 </head>
 <body>
-    <form method="POST" action="/add_user">
-        <label for="username">Name:</label><br>
-        <input type="text" id="username" name="username" placeholder="Enter your name"><br>
-        <input type="submit" value="Submit">
-    </form>
-
+    <div>
+        {% if user_name == '' %}
+            <div>
+                <h2>You did not enter a user name</h2>
+                <div>
+                    <form method="GET" action="/add_user">
+                        <label for="username">Name:</label><br>
+                        <input type="text" id="username" name="username" placeholder="Enter your name"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        {% elif name == user_name %}
+            <div>
+                <p> <h2> The user - {{ name }} - successfully added to movies user's list </h2> </p>
+            </div>
+        {% else %}
+            <div>
+                <form method="GET" action="/add_user">
+                    <label for="username">Name:</label><br>
+                    <input type="text" id="username" name="username" placeholder="Enter your name"><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        {% endif %}
+        <div>
+            <p> <a href="/"> Homepage </a> </p>
+            <p> <a href="/users"> View all users </a> </p>
+        </div>
+    </div>
 </body>
 </html>
