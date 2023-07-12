@@ -11,7 +11,7 @@
                 <form method="GET" action="/users/{{ user_id }}/add_movie">
                     <label for="movie_search">Search movie:</label><br>
                     <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Search">
                 </form>
             </div>
         {% elif movie_name == "movie added" %}
@@ -26,7 +26,7 @@
                     <form method="GET" action="/users/{{ user_id }}/add_movie">
                         <label for="movie_search">Search movie:</label><br>
                         <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="Search">
                     </form>
                 </div>
             </div>
@@ -38,7 +38,31 @@
                     <form method="GET" action="/users/{{ user_id }}/add_movie">
                         <label for="movie_search">Search movie:</label><br>
                         <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+        {% elif movie_name == "empty name" %}
+            <div>
+                <h2>You can't leave movie name blank</h2>
+                <div>
+                    <p> Enter a movie name to search</p>
+                    <form method="GET" action="/users/{{ user_id }}/add_movie">
+                        <label for="movie_search">Search movie:</label><br>
+                        <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+        {% elif movie_name == "movie_exists" %}
+            <div>
+                <h2>The movie already exists in your catalogue</h2>
+                <div>
+                    <p> Enter a movie name to search</p>
+                    <form method="GET" action="/users/{{ user_id }}/add_movie">
+                        <label for="movie_search">Search movie:</label><br>
+                        <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
+                        <input type="submit" value="Search">
                     </form>
                 </div>
             </div>
@@ -50,7 +74,7 @@
                     <form method="GET" action="/users/{{ user_id }}/add_movie">
                         <label for="movie_search">Search movie:</label><br>
                         <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="Search">
                     </form>
                 </div>
             </div>
@@ -66,14 +90,15 @@
                     <input type="text" id="movie_rating" name="movie_rating" value=" {{ rating }} "><br>
                     <label for="movie_director">Movie Director:</label><br>
                     <input type="text" id="movie_director" name="movie_director" value=" {{ director }} "><br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Add movie">
                 </form>
             </div>
         {% endif %}
         <div>
-            <p> <a href="/"> Homepage </a> </p>
             <p> <a href="/users/{{ user_id }}"> View your updated catalogue </a> </p>
             <p> <a href="/users/{{ user_id }}/add_movie"> Add a new movie to your catalogue </a> </p>
+            <p> <a href="/users"> View all users </a></p>
+            <p> <a href="/"> Homepage </a> </p>
         </div>
     </div>
 </body>

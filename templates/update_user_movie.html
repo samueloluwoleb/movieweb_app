@@ -10,6 +10,14 @@
             <div>
                 <p><h2>The movie - {{ name }} - successfully updated with new info </h2></p>
             </div>
+        {% elif movie_title %}
+            <div>
+                <h2>You already have this movie in you movie catalogue</h2>
+            <div>
+        {% elif movie_name %}
+            <div>
+                <h2>You can't leave movie name blank</h2>
+            <div>
         {% else %}
             <div>
                 <div>
@@ -25,15 +33,16 @@
                         <input type="text" id="movie_rating" name="movie_rating" value=" {{ movie.get('rating') }} "><br>
                         <label for="movie_director">Movie Director:</label><br>
                         <input type="text" id="movie_director" name="movie_director" value=" {{ movie.get('director') }} "><br>
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="Update movie">
                     </form>
                 </div>
             </div>
         {% endif %}
         <div>
-            <p> <a href="/"> Homepage </a> </p>
             <p> <a href="/users/{{user_id}}"> View your updated catalogue </a> </p>
             <p> <a href="/users/{{ user_id }}/add_movie"> Add a new movie to your catalogue </a> </p>
+            <p> <a href="/users"> View all users </a></p>
+            <p> <a href="/"> Homepage </a> </p>
         </div>
     </div>
 </body>
