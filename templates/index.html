@@ -2,18 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Movie App</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var div2 = document.querySelector(".div2");
+            div2.addEventListener("mouseenter", function() {
+                this.classList.add("active");
+            });
+            div2.addEventListener("mouseleave", function() {
+                this.classList.remove("active");
+            });
+        });
+    </script>
 </head>
 <body>
-    <div>
-        <div>
+    <div class="container">
+        <div class="div1">
             <h1> Welcome to Movie App v2.0 </h1>
         </div>
-        <div>
+        <div class="div2">
             <button> MENU </button>
+
         </div>
-        <div>
+        <div class="div3">
             <p> <a href="/users"> View all users </a></p>
+            <p class="line"> </p>
             <p> <a href="/add_user"> Add a new user </a></p>
         </div>
     </div>

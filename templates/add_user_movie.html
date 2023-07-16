@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Add a user </title>
+    <title> Add a movie </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_add_user_movie.css') }}">
 </head>
 <body>
-    <div>
+    <div class="container">
         {% if not movie_name %}
             <div>
                 <form method="GET" action="/users/{{ user_id }}/add_movie">
@@ -23,7 +24,7 @@
                 <h2>There are no movies found </h2>
                 <div>
                     <p> Enter another movie</p>
-                    <form method="GET" action="/users/{{ user_id }}/add_movie">
+                    <form class="form" method="GET" action="/users/{{ user_id }}/add_movie">
                         <label for="movie_search">Search movie:</label><br>
                         <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
                         <input type="submit" value="Search">
@@ -35,7 +36,7 @@
                 <h2>You did not enter a movie name</h2>
                 <div>
                     <p> Enter a movie name to search</p>
-                    <form method="GET" action="/users/{{ user_id }}/add_movie">
+                    <form class="form" method="GET" action="/users/{{ user_id }}/add_movie">
                         <label for="movie_search">Search movie:</label><br>
                         <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
                         <input type="submit" value="Search">
@@ -47,7 +48,7 @@
                 <h2>You can't leave movie name blank</h2>
                 <div>
                     <p> Enter a movie name to search</p>
-                    <form method="GET" action="/users/{{ user_id }}/add_movie">
+                    <form class="form" method="GET" action="/users/{{ user_id }}/add_movie">
                         <label for="movie_search">Search movie:</label><br>
                         <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
                         <input type="submit" value="Search">
@@ -59,7 +60,7 @@
                 <h2>The movie already exists in your catalogue</h2>
                 <div>
                     <p> Enter a movie name to search</p>
-                    <form method="GET" action="/users/{{ user_id }}/add_movie">
+                    <form class="form" method="GET" action="/users/{{ user_id }}/add_movie">
                         <label for="movie_search">Search movie:</label><br>
                         <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
                         <input type="submit" value="Search">
@@ -71,7 +72,7 @@
                 <h2>You already have this movie in you movie catalogue</h2>
                 <div>
                     <p> Enter another movie name</p>
-                    <form method="GET" action="/users/{{ user_id }}/add_movie">
+                    <form class="form" method="GET" action="/users/{{ user_id }}/add_movie">
                         <label for="movie_search">Search movie:</label><br>
                         <input type="text" id="movie_search" name="movie_search" placeholder="Enter the movie name"><br>
                         <input type="submit" value="Search">
@@ -81,7 +82,7 @@
         {% else %}
             <div>
                 <h2> These are your movie details, you can change any field, if you want</h2>
-                <form method="POST" action="/users/{{ user_id }}/add_movie">
+                <form class="form" method="POST" action="/users/{{ user_id }}/add_movie">
                     <label for="movie_name">Movie Name:</label><br>
                     <input type="text" id="movie_name" name="movie_name" value=" {{ name }} "><br>
                     <label for="movie_year">Year of Release:</label><br>
@@ -94,7 +95,7 @@
                 </form>
             </div>
         {% endif %}
-        <div>
+        <div class="link">
             <p> <a href="/users/{{ user_id }}"> View your updated catalogue </a> </p>
             <p> <a href="/users/{{ user_id }}/add_movie"> Add a new movie to your catalogue </a> </p>
             <p> <a href="/users"> View all users </a></p>

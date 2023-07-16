@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title> User favorite movies </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_user_movies.css') }}">
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <div>
             <h1> List of {{ name }}'s movies </h1>
         </div>
-        <div>
+        <div class="data_movie">
             <ul>
                 {% if not user_movies %}
                     <li> <h3> This user has no favourite movie </h3></li>
@@ -33,7 +34,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <div>
+                        <div class="up_del">
                             <p> <a href="/users/{{ user_id }}/update_movie/{{ movie.get('id') }}"> <input type="button" value="Update"> </a> </p>
                             <p> <a href="/users/{{ user_id }}/delete_movie/{{ movie.get('id') }}"> <input type="button" value="Delete"> </a> </p>
                         </div>
@@ -41,7 +42,7 @@
                 {% endif %}
             </ul>
         </div>
-        <div>
+        <div class="link">
             <p> <a href="/users/{{ user_id }}/add_movie"> Add a new movie to your catalogue </a> </p>
             <p> <a href="/users"> View all users </a> </p>
             <p> <a href="/"> Homepage </a> </p>

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_update_user_movie.css') }}">
 </head>
 <body>
-    <div>
+    <div class="container">
         {% if name %}
             <div>
                 <p><h2>The movie - {{ name }} - successfully updated with new info </h2></p>
@@ -38,7 +39,7 @@
                 </div>
             </div>
         {% endif %}
-        <div>
+        <div class="link">
             <p> <a href="/users/{{user_id}}"> View your updated catalogue </a> </p>
             <p> <a href="/users/{{ user_id }}/add_movie"> Add a new movie to your catalogue </a> </p>
             <p> <a href="/users"> View all users </a></p>

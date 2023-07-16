@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title> Add a user </title>
+    <link rel="stylesheet" href="static/styles_add_user.css">
 </head>
 <body>
-    <div>
+    <div class="container">
         {% if user_name == '' %}
             <div>
                 <h2>You did not enter a user name</h2>
                 <div>
-                    <form method="GET" action="/add_user">
+                    <form class="form" method="GET" action="/add_user">
                         <label for="username"> Name:</label><br>
-                        <input type="text" id="username" name="username" placeholder="Enter your name"><br>
+                        <input type="text" id="username" name="username" placeholder="Enter your username"><br>
                         <input type="submit" value="Add user">
                     </form>
                 </div>
@@ -26,14 +27,14 @@
             </div>
         {% else %}
             <div>
-                <form method="GET" action="/add_user">
+                <form class="form" method="GET" action="/add_user">
                     <label for="username">Name:</label><br>
-                    <input type="text" id="username" name="username" placeholder="Enter your name"><br>
+                    <input type="text" id="username" name="username" placeholder="Enter your username"><br>
                     <input type="submit" value="Add user">
                 </form>
             </div>
         {% endif %}
-        <div>
+        <div class="link">
             <p> <a href="/users"> View all users </a> </p>
             <p> <a href="/"> Homepage </a> </p>
         </div>

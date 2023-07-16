@@ -1,0 +1,82 @@
+body {
+    background-color: #42414d;
+    text-align: center;
+    background-image: url("background-pattern.png");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 800px;
+    text-align: center;
+    color: white;
+    margin: 10% auto;
+}
+
+div {
+    margin: 5px;
+    padding: 5px;
+}
+
+.div1 {
+    font-size: 30px;
+}
+
+.div2 {
+    margin-bottom: 0px;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    font-size: 30px;
+    border-radius: 12px;
+}
+
+.div3 {
+    overflow: auto;
+    text-align: center;
+    display: flex;
+    margin-top: 0px;
+}
+
+
+.div3 p {
+    margin: 15px;
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    position: static;
+    display: none;
+    font-size: 24px;
+}
+
+
+.div2.active ~ .div3 p,
+.div3:hover p {
+    display: block
+}
+
+
+.div3 p a {
+    position: relative;
+    top: 40%;
+    color: #aca7a6;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.div3 p.line {
+    border: 0.1px solid white;
+    width: 0px;
+    height: 100px;
+    left: auto;
+    right: auto;
+}
+

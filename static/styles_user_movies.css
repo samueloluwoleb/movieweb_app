@@ -1,0 +1,57 @@
+body {
+    background-color: #42414d;
+    text-align: center;
+    background-image: url("background-pattern.png");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 800px;
+    text-align: center;
+    color: white;
+    margin: 10% auto;
+}
+
+.up_del {
+    text-align: left;
+}
+
+.up_del p {
+    margin-left: 40px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+a:link {
+  color: #aca7a6;
+  font-size: 24px;
+}
+
+a:visited {
+  color: #aca7a6;
+}
+
+.link {
+    text-align: center;
+    display: flex;
+    margin-top: 40px;
+}
+
+.link p a {
+    color: #aca7a6;
+}
+
+.link p {
+    margin: 15px;
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    position: static;
+    font-size: 32px;
+}
+
+div ul li {
+    list-style-type: none;
+    text-align: left;
+}

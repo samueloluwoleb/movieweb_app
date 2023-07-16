@@ -1,0 +1,53 @@
+body {
+    background-color: #42414d;
+    text-align: center;
+    background-image: url("background-pattern.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    max-width: 800px;
+    text-align: center;
+    color: white;
+    margin: 30px auto;
+}
+
+h1 {
+    color: #aca7a6;
+    font-size: 50px;
+}
+
+div ul li {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+div ul li a {
+    color: white;
+    font-size: 24px;
+}
+
+div ul  {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.link {
+    text-align: center;
+    display: flex;
+    margin-top: 40px;
+}
+
+.link p a {
+    color: #aca7a6;
+}
+
+.link p {
+    margin: 15px;
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    position: static;
+    font-size: 32px;
+}
