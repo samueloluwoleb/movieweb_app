@@ -116,6 +116,10 @@ def add_user_movie(user_id):
             return render_template('add_user_movie.html', user_id=user_id, movie_name=movie_name, name=name)
         # Parses GET response data and renders the appropriate html document with the appropriate response data
         else:
+            user_ids_all = data_manager.user_ids()
+            if user_id not in user_ids_all:
+                return render_template('404.html')
+
             movie_name = request.args.get('movie_search')
             if movie_name is None:
                 return render_template('add_user_movie.html', user_id=user_id, movie_name=movie_name)

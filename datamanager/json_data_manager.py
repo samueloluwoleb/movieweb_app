@@ -72,6 +72,15 @@ class JSONDataManager(DataManagerInterface):
         except (AttributeError, ValueError, TypeError, FileNotFoundError, ConnectionError) as e:
             print("An Error Occurred:", str(e))
 
+    def user_ids(self):
+        """
+            returns all users id
+        :return:
+        """
+        users = self.get_all_users()
+        user_ids = [user_id for user_id in users[0]]
+        return user_ids
+
     def get_movie_info_api(self, movie_name_param, user_id_param):
         """
             Searches the web through an api for more details about a searched movie and manipulate the response
