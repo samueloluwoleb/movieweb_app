@@ -1,82 +1,77 @@
+/* styles.css */
 body {
-    background-color: #42414d;
+    font-family: Arial, sans-serif;
     text-align: center;
-    background-image: url("background-pattern.png");
-    background-size: cover;
-    background-attachment: fixed;
+    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
     max-width: 800px;
-    text-align: center;
-    color: white;
     margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-div {
-    margin: 5px;
-    padding: 5px;
+.header {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #007bff;
 }
 
-.div1 {
-    font-size: 30px;
-}
-
-.div2 {
-    margin-bottom: 0px;
-}
-
-button {
-    width: 100px;
+.menu-button {
+    width: 120px;
     height: 40px;
-    font-size: 30px;
-    border-radius: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.div3 {
-    overflow: auto;
-    text-align: center;
+.menu-button:hover {
+    background-color: #0056b3;
+}
+
+.menu {
     display: flex;
-    margin-top: 0px;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-
-.div3 p {
-    margin: 15px;
-    width: 400px;
-    height: 100px;
-    text-align: center;
-    position: static;
-    display: none;
-    font-size: 24px;
+.menu-item {
+    margin: 0 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-
-.div2.active ~ .div3 p,
-.div3:hover p {
-    display: block
+.div2.active ~ .menu .menu-item,
+.menu:hover .menu-item {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-
-.div3 p a {
-    position: relative;
-    top: 40%;
-    color: #aca7a6;
+.menu-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+    transition: color 0.3s ease;
 }
 
-a:link {
-  text-decoration: none;
+.menu-item.line {
+    border-left: 1px solid #007bff;
+    height: 40px;
+    margin: 0 20px;
 }
 
-a:visited {
-  text-decoration: none;
+.menu-item a:hover {
+    color: #007bff;
 }
-
-.div3 p.line {
-    border: 0.1px solid white;
-    width: 0px;
-    height: 100px;
-    left: auto;
-    right: auto;
-}
-

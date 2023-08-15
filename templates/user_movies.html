@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title> User favorite movies </title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles_user_movies.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='user_movies.css') }}">
 </head>
 
 <body>
     <div class="container">
         <div>
             <h1> List of {{ name }}'s movies </h1>
+        </div>
+        <div>
+            {% if flash_message %}
+                <div class="flash-message">
+                    <p>{{ flash_message }}</p>
+                </div>
+            {% endif %}
         </div>
         <div class="data_movie">
             <ul>
@@ -18,25 +25,100 @@
                 {% else %}
                     {% for movie in user_movies %}
                         <li>
-                            <h3> Name - {{ movie.get('name') }} </h3>
+                            <h3> Name - {{movie.get('name')}} </h3>
                             <ul>
                                 <li>
-                                    id - {{ movie.get('id') }}
+                                    id - {{movie.get('id')}}
                                 </li>
                                 <li>
-                                    Director - {{ movie.get('director') }}
+                                    Director - {{movie.get('director')}}
                                 </li>
                                 <li>
-                                    Year - {{ movie.get('year') }}
+                                    Year - {{movie.get('year')}}
                                 </li>
                                 <li>
-                                    Rating - {{ movie.get('rating') }}
+                                    Rating - {{movie.get('rating')}}
                                 </li>
+                                {% for genre_detail in genres_details %}
+                                    {% if genre_detail.get("id") == movie.get('genre_id') %}
+                                        <li>
+                                            Genre - {{genre_detail.get('title')}}
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                                <p>
+                                    Review and Rating:
+                                </p>
+                                {% for user in reviews_data %}
+                                    {% if user_id == user %}
+                                        {% for movie_details in reviews_data[user] %}
+                                            {% if movie_details.get('movie_id') == movie.get('id') %}
+                                                <li>
+                                                    {{ movie_details.get('description') }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{ movie_details.get('rating')}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/users/{{ user_id }}/delete_review/{{ movie.get('id') }}"> Delete review </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
                             </ul>
                         </li>
                         <div class="up_del">
-                            <p> <a href="/users/{{ user_id }}/update_movie/{{ movie.get('id') }}"> <input type="button" value="Update"> </a> </p>
-                            <p> <a href="/users/{{ user_id }}/delete_movie/{{ movie.get('id') }}"> <input type="button" value="Delete"> </a> </p>
+                            <p> <a href="/users/{{ user_id }}/update_movie/{{ movie.get('id') }}"> <input type="button" value="Update movie"> </a> </p>
+                            <p> <a href="/users/{{ user_id }}/delete_movie/{{ movie.get('id') }}"> <input type="button" value="Delete movie"> </a> </p>
+                            {% if user_id not in reviews_data %}
+                                <p> <input class="add-review-button" id="add_review{{movie.get('id')}}" type="button" value="Add a review"> </p>
+                            {% else %}
+                                {% for user in reviews_data %}
+                                    {% if user_id == user %}
+                                        {% set movie_list = [] %}
+                                        {% for movie_details in reviews_data[user] %}
+                                            {% set _ = movie_list.append(movie_details.get('movie_id')) %}
+                                        {% endfor %}
+                                        {% if movie.get('id') in movie_list %}
+                                        {% else %}
+                                            <p> <input class="add-review-button" id="add_review{{movie.get('id')}}" type="button" value="Add a review"> </p>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+
+                            <div id="review_box{{movie.get('id')}}" class="review_box">
+                                <form action="/reviews/{{user_id}}/review_movie/{{movie.get('id')}}" method="POST">
+                                    <label for="rating">Review Rating:</label><br>
+                                    <select name="rating" id="rating" required>
+                                        <option value="" disabled selected>Choose movie rating</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select><br>
+                                        <label for="descriptn">Review description:</label><br>
+                                        <textarea id="descriptn" name="description" rows="10" cols="30" required></textarea><br>
+                                        <input type="submit" value="Add review">
+                                </form>
+                            </div>
+                            <script>
+                                const toggleButton{{movie.get('id')}} = document.getElementById('add_review{{movie.get('id')}}');
+                                const hiddenDiv{{movie.get('id')}} = document.getElementById('review_box{{movie.get('id')}}');
+
+                                let isVisible{{movie.get('id')}}= false;
+
+                                toggleButton{{movie.get('id')}}.addEventListener('click', () => {
+                                    if (!isVisible{{movie.get('id')}}) {
+                                        hiddenDiv{{movie.get('id')}}.style.display = 'block';
+                                        isVisible{{movie.get('id')}} = true;
+                                    } else {
+                                        hiddenDiv{{movie.get('id')}}.style.display = 'none';
+                                        isVisible{{movie.get('id')}} = false;
+                                    }
+                                });
+                            </script>
                         </div>
                     {% endfor %}
                 {% endif %}
@@ -48,5 +130,7 @@
             <p> <a href="/"> Homepage </a> </p>
         </div>
     </div>
+
 </body>
 </html>
+

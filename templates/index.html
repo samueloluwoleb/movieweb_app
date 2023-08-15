@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie App</title>
     <link rel="stylesheet" href="static/styles.css">
     <script>
@@ -18,17 +19,20 @@
 </head>
 <body>
     <div class="container">
-        <div class="div1">
-            <h1> Welcome to Movie App v2.0 </h1>
+        <div class="header">
+            Welcome to Movie App v2.0
         </div>
         <div class="div2">
-            <button> MENU </button>
-
+            <button class="menu-button">MENU</button>
         </div>
-        <div class="div3">
-            <p> <a href="/users"> View all users </a></p>
-            <p class="line"> </p>
-            <p> <a href="/add_user"> Add a new user </a></p>
+        <div class="menu">
+            <div class="menu-item">
+                <a href="/users">View all users</a>
+            </div>
+            <div class="menu-item line"></div>
+            <div class="menu-item">
+                <a href="/add_user">Add a new user</a>
+            </div>
         </div>
     </div>
 </body>

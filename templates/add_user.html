@@ -3,40 +3,25 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Add a user </title>
-    <link rel="stylesheet" href="static/styles_add_user.css">
+    <link rel="stylesheet" href="static/add_user.css">
 </head>
 <body>
     <div class="container">
-        {% if user_name == '' %}
-            <div>
-                <h2>You did not enter a user name</h2>
-                <div>
-                    <form class="form" method="GET" action="/add_user">
-                        <label for="username"> Name:</label><br>
-                        <input type="text" id="username" name="username" placeholder="Enter your username"><br>
-                        <input type="submit" value="Add user">
-                    </form>
-                </div>
-            </div>
-        {% elif name == user_name %}
-            <div>
-                <p> <h2> The user - {{ name }} - successfully added to movies user's list </h2> </p>
-            </div>
-            <div>
-                <p> <a href="/users/{{ user_id }}/add_movie"> Add a new movie to your catalogue </a> </p>
-            </div>
-        {% else %}
-            <div>
-                <form class="form" method="GET" action="/add_user">
-                    <label for="username">Name:</label><br>
-                    <input type="text" id="username" name="username" placeholder="Enter your username"><br>
-                    <input type="submit" value="Add user">
-                </form>
-            </div>
-        {% endif %}
-        <div class="link">
-            <p> <a href="/users"> View all users </a> </p>
-            <p> <a href="/"> Homepage </a> </p>
+        <div>
+            <h1> Enter user details </h1>
+        </div>
+        <div>
+            <form class="form" method="POST" action="/add_user">
+                <label for="username"> Name:</label><br>
+                <input type="text" id="username" name="username" placeholder="*" required><br>
+                <label for="email"> Email:</label><br>
+                <input type="text" id="email" name="email" placeholder="*" required><br>
+                <label for="password"> Password:</label><br>
+                <input type="password" id="password" name="password" placeholder="*" required><br>
+                <label for="email"> Gender:</label><br>
+                <input type="text" id="gender" name="gender" placeholder="M/F/(LGBTQ)"><br>
+                <input type="submit" value="Add user">
+            </form>
         </div>
     </div>
 </body>
