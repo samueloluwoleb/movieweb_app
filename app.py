@@ -260,6 +260,21 @@ def add_user_review(movie_id, user_id):
         return render_template('404.html')
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(400)
+def page_not_found(e):
+    return render_template('400.html'), 400
+
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('500.html'), 500
+
+
 if __name__ == '__main__':
     # Launch the Flask dev server
     app.run(host="0.0.0.0", port=5003)
